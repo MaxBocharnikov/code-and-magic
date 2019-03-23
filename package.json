@@ -12,8 +12,7 @@
   },
   "devDependencies": {
     "eslint": "^5.7.0",
-    "eslint-config-htmlacademy": "0.5.2",
-    "eslint-config-strongloop": "^2.1.0"
+    "eslint-config-htmlacademy": "0.5.2"
   },
   "license": "MIT",
   "dependencies": {},
