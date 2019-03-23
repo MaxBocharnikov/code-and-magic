@@ -180,6 +180,11 @@ header
     margin: 0 auto;
 }
 
+.demo canvas {
+  position: relative;
+  z-index: 1;
+}
+
 main
 {
     padding-top: 80px;
