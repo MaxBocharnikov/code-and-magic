@@ -75,5 +75,5 @@ var buildHistogrames = function(ctx, names, times) {
     // Указываем новое значение x-position с учетом ширины и расстояния между гистограммами
     xPosition += weight + distance;
   }
-}
+};
 
