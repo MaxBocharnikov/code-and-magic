@@ -1,3 +1,5 @@
+'use strict';
+
 //  Функция генерации случайно числа от min (включительно) до max (не включая)
 var getRandomNumber = function (min, max) {
   return Math.floor(Math.random() * (max - min) + min);
@@ -14,7 +16,7 @@ var generateName = function (firstNames, lastNames) {
   if (!getRandomNumber(0, 2)) {
     return firstNames[firstNameIndex] + ' ' + lastNames[lastNameIndex];
   }
-  return lastNames[lastNameIndex] + ' ' + firstNames[firstNameIndex]
+  return lastNames[lastNameIndex] + ' ' + firstNames[firstNameIndex];
 };
 
 
@@ -38,7 +40,7 @@ var generateWizard = function (wizardSettingsList) {
   wizard.eyeColor = generateEyeColors(wizardSettingsList.eyesColors);
 
   return wizard;
-}
+};
 
 // Функциия случайной генерации магов
 var generateRandomWizards = function (wizardSettingsList, quantity) {
@@ -50,7 +52,27 @@ var generateRandomWizards = function (wizardSettingsList, quantity) {
   return generatedWizards;
 };
 
+//  Функция отображет окно выбора мага, удаляя у элемента класс hidden
+var showSetup = function () {
+  var setup = document.querySelector('.setup');
+  setup.classList.remove('hidden');
+};
 
+//  Функция отображет блок настройки мага, удаляя у элемента класс hidden
+var showSimilar = function () {
+  var setup = document.querySelector('.setup-similar');
+  setup.classList.remove('hidden');
+};
+
+
+//  Функция отрисовывает мага по шаблону
+var renderWizards = function (wizard, template) {
+  var wizardElement = template.cloneNode(true);
+  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyeColor;
+  return wizardElement;
+};
 
 // Объект с возможными настройками волшебник
 var wizardSettingsList = {
@@ -94,8 +116,27 @@ var wizardSettingsList = {
   ]
 };
 
+//  Реализация программы
 
-console.log(generateRandomWizards(wizardSettingsList, 4));
+//  Step 1 - отображаем мага
+showSetup();
 
+//  Step 2 - генерируем магов
+var wizards = generateRandomWizards(wizardSettingsList, 4);
 
+// Step 3 - отрисовываем магов
+var setupWizardsList = document.querySelector('.setup-similar-list'); //  Куда будем записывать магов
+var wizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item'); //  Шаблон
+
+var fragment = document.createDocumentFragment();
+for (var i = 0; i < wizards.length; i++) {
+  var renderedWizard = renderWizards(wizards[i], wizardTemplate);
+  fragment.appendChild(renderedWizard);
+}
+
+// Step 4 - добавляем готовый фрагмент в DOM (класс setup-similar-list)
+setupWizardsList.appendChild(fragment);
+
+// Step 5 - отображаем блок выбора магов
+showSimilar();
 

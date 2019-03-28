@@ -1,3 +1,5 @@
+'use strict';
+
 var renderStatistics = function (ctx, names, times) {
 
   // Строим облако c текстом
@@ -27,9 +29,9 @@ var getLongestTime = function (times) {
   }
   return Math.round(longestTime);
 };
-
 // Функция возвращает высоты гистограмм
-var getHistogramesHeight = function(names, times) {
+
+var getHistogramesHeight = function (names, times) {
   var longestTime = getLongestTime(times);
   var histogramesHeight = [];
   var HEIGHT = 150;
@@ -40,9 +42,8 @@ var getHistogramesHeight = function(names, times) {
   }
   return histogramesHeight;
 };
-
 // Функция строит гистрограммы
-var buildHistogrames = function(ctx, names, times) {
+var buildHistogrames = function (ctx, names, times) {
   var xPosition = 120;
   var yPosition = 240;
   var weight = 40;
