@@ -62,8 +62,8 @@
 
   <div class="demo"></div>
 
-  <div class="setup-open">
-    <img src="./img/user-1.jpg" class="setup-open-icon">
+  <div  class="setup-open">
+    <img tabindex="0" src="./img/user-1.jpg" class="setup-open-icon">
   </div>
 </header>
 
@@ -71,7 +71,10 @@
   <form class="setup-wizard-form"
         method="post"
         enctype="multipart/form-data"
-        autocomplete="off">
+        autocomplete="off"
+        action="https://js.dump.academy/code-and-magick"
+        >
+
 
     <div class="setup-title">
       <div class="setup-user">
@@ -80,13 +83,13 @@
           <input type="file" name="avatar">
         </div>
         <label>
-          <input type="text" name="username"
+          <input type="text" minlength="2" name="username"
                  maxlength="25" required
                  class="setup-user-name" value="Синий Пендальф"/>
         </label>
       </div>
 
-      <span class="setup-close">&times;</span>
+      <span tabindex="0" class="setup-close">&times;</span>
     </div>
 
 
