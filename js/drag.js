@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-  var setup = document.querySelector('.setup');
-  var userPic = setup.querySelector('.upload');
+  var userPic = window.setup.querySelector('.upload');
 
   var mouseDownHandler = function (downEvt) {
     downEvt.preventDefault();
@@ -27,8 +26,8 @@
         y: moveEvt.clientY
       };
 
-      setup.style.left = setup.offsetLeft + shift.x + 'px';
-      setup.style.top = setup.offsetTop + shift.y + 'px';
+      window.setup.style.left = window.setup.offsetLeft + shift.x + 'px';
+      window.setup.style.top = window.setup.offsetTop + shift.y + 'px';
     };
 
     var mouseUpHandler = function (upEvt) {
