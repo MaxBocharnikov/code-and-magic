@@ -8,7 +8,7 @@
   };
 
   // Удаляет деток
-  window.removeChildren = function(elem) {
+  window.removeChildren = function (elem) {
     while (elem.lastChild) {
       elem.removeChild(elem.lastChild);
     }

@@ -1,5 +1,6 @@
 'use strict';
 (function () {
+  /*
   //  Функция генерирует Имя + Отчество
   var generateName = function (firstNames, lastNames) {
     var firstNameIndex = window.getRandomNumber(0, firstNames.length);
@@ -80,8 +81,5 @@
       'yellow',
       'green'
     ]
-  };
-
-
- // window.wizards = generateRandomWizards(wizardSettingsList, 4);
+  };*/
 })();
