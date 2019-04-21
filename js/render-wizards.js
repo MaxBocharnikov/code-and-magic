@@ -2,9 +2,11 @@
 (function () {
   // Функция получает и отрисовывает схожих магов
   window.getSimilarWizards = function () {
-    var setupWizardsList = document.querySelector('.setup-similar-list'); //  Куда будем записывать магов
+    var setupWizardsList = window.setup.querySelector('.setup-similar-list'); //  Куда будем записывать магов
     var wizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item'); //  Шаблон
-    var errorMessage = document.querySelector('.setup-similar-list--error');
+    window.errorMessage = window.setup.querySelector('.setup-similar-list--error');
+    window.errorSubmit = window.setup.querySelector('.setup-submit--error');
+
     //  Функция отрисовывает мага по шаблону
     var renderWizards = function (wizard, template) {
       var wizardElement = template.cloneNode(true);
@@ -25,13 +27,19 @@
       }
       return chosenWizards;
     };
+    // Функция очищает содержимое блока setup-similar-list
+    window.cleanSetup = function () {
+      window.removeChildren(setupWizardsList);
+      if (!window.errorMessage.classList.contains('hidden')) {
+        window.errorMessage.classList.add('hidden');
+      }
+      if (!window.errorSubmit.classList.contains('hidden')) {
+        window.errorSubmit.classList.add('hidden');
+      }
+    };
 
     //  Функция будет вызвана в случае успешной загрузки магов
     var onLoadSimilarWizards = function (wizards) {
-      window.removeChildren(setupWizardsList);
-      if (!errorMessage.classList.contains('hidden')) {
-        errorMessage.classList.add('hidden');
-      }
       var fragment = document.createDocumentFragment();
       var chosenWizards = chooseWizards(wizards, 4);
       for (var i = 0; i < chosenWizards.length; i++) {
@@ -45,9 +53,8 @@
 
     // Функция будет вызвана в случае появления ошибок
     var onErrorSimilarWizards = function (error) {
-      window.removeChildren(setupWizardsList);
-      errorMessage.textContent = error;
-      errorMessage.classList.remove('hidden');
+      window.errorMessage.textContent = error;
+      window.errorMessage.classList.remove('hidden');
     };
 
     window.load(onLoadSimilarWizards, onErrorSimilarWizards);

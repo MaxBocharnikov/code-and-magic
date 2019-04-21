@@ -1,13 +1,13 @@
 'use strict';
 
 (function () {
-  var setup = document.querySelector('.setup');
-  var setupWizardCoat = setup.querySelector('.setup-wizard .wizard-coat ');
-  var setupWizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
-  var setupFireball = setup.querySelector('.setup-fireball-wrap');
-  var hiddenCoatColor = setup.querySelector('input[name=coat-color]');
-  var hiddenEyesColor = setup.querySelector('input[name=eyes-color]');
-  var hiddenFireballColor = setup.querySelector('input[name=fireball-color]');
+  var setupWizardCoat = document.querySelector('.setup-wizard .wizard-coat ');
+  var setupWizardEyes = document.querySelector('.setup-wizard .wizard-eyes');
+  var setupFireball = document.querySelector('.setup-fireball-wrap');
+  var hiddenCoatColor = document.querySelector('input[name=coat-color]');
+  var hiddenEyesColor = document.querySelector('input[name=eyes-color]');
+  var hiddenFireballColor = document.querySelector('input[name=fireball-color]');
+  var submit = document.querySelector('.setup-submit');
 
   var coatColors = [
     'rgb(101, 137, 164)',
@@ -42,8 +42,18 @@
     return color;
   };
 
+  // Функция-коллбэк на успешную отправку данных
+  var onSaveSuccess = function () {
+    window.hideSetup();
+  };
 
-  // Step 3 - Изменение цвета мантии персонажа по нажатию
+  // Функция-коллбэк на ошибочную отправку данных
+  var onSaveError = function (errorMesage) {
+    window.errorSubmit.classList.remove('hidden');
+    window.errorSubmit.textContent = errorMesage;
+  };
+
+  // Изменение цвета мантии персонажа по нажатию
   setupWizardCoat.addEventListener('click', function () {
     setupWizardCoat.style.fill = changeColor(setupWizardCoat.style.fill, coatColors);
     hiddenCoatColor.value = setupWizardCoat.style.fill;
@@ -59,6 +69,13 @@
   setupFireball.addEventListener('click', function () {
     hiddenFireballColor.value = changeColor(hiddenFireballColor.value, fireballColors);
     setupFireball.style.backgroundColor = hiddenFireballColor.value;
+  });
+
+  // На нажатие кнопки [Сохранить]
+  submit.addEventListener('click', function (e) {
+    e.preventDefault();
+    var form = document.querySelector('.setup-wizard-form');
+    window.save(new FormData(form), onSaveSuccess, onSaveError);
   });
 
 })();

@@ -1,14 +1,15 @@
 'use strict';
 
-var setup = document.querySelector('.setup');
+window.setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
-var setupClose = setup.querySelector('.setup-close');
-var setupUsername = setup.querySelector('.setup-user-name');
+var setupClose = window.setup.querySelector('.setup-close');
+var setupUsername = window.setup.querySelector('.setup-user-name');
+
 
 // На нажатия esc
 var onPopupEscPress = function (evt) {
   if (window.isEscKeyCode(evt.keyCode)) {
-    hideSetup();
+    window.hideSetup();
   }
 };
 
@@ -16,35 +17,36 @@ var onPopupEscPress = function (evt) {
 var originalSetupCoorinat = {};
 
 //  Функция отображет окно выбора мага, удаляя у элемента класс hidden
-var showSetup = function () {
-  originalSetupCoorinat.x = setup.style.left;
-  originalSetupCoorinat.y = setup.style.top;
-  setup.classList.remove('hidden');
+window.showSetup = function () {
   showSimilar();
+  originalSetupCoorinat.x = window.setup.style.left;
+  originalSetupCoorinat.y = window.setup.style.top;
+  window.setup.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
 };
 
 //  Функция скрывает окно выбора мага, добавляя  элементу класс hidden
-var hideSetup = function () {
-  setup.classList.add('hidden');
+window.hideSetup = function () {
+  window.setup.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
-  setup.style.left = originalSetupCoorinat.x;
-  setup.style.top = originalSetupCoorinat.y;
+  window.setup.style.left = originalSetupCoorinat.x;
+  window.setup.style.top = originalSetupCoorinat.y;
+  window.cleanSetup();
 };
 // Открытие - закрытие окна настройки персонажа
-setupOpen.addEventListener('click', showSetup);
+setupOpen.addEventListener('click', window.showSetup);
 setupOpen.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 13) {
     evt.preventDefault();
-    showSetup();
+    window.showSetup();
   }
 });
 
-setupClose.addEventListener('click', hideSetup);
+setupClose.addEventListener('click', window.hideSetup);
 setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 13) {
     evt.preventDefault();
-    hideSetup();
+    window.hideSetup();
   }
 });
 
