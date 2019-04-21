@@ -20,6 +20,7 @@ var showSetup = function () {
   originalSetupCoorinat.x = setup.style.left;
   originalSetupCoorinat.y = setup.style.top;
   setup.classList.remove('hidden');
+  showSimilar();
   document.addEventListener('keydown', onPopupEscPress);
 };
 
@@ -58,7 +59,8 @@ setupUsername.addEventListener('blur', function () {
 //  Функция отображет блок настройки мага, удаляя у элемента класс hidden
 var showSimilar = function () {
   var setupSimilar = document.querySelector('.setup-similar');
+  window.getSimilarWizards();
   setupSimilar.classList.remove('hidden');
 };
-showSimilar();
+
 

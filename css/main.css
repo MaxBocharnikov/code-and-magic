@@ -47,7 +47,15 @@ form
 
 .hidden
 {
-    display: none;
+    display: none !important;
+}
+
+.setup-similar-list--error {
+  display: inline-block;
+  width: 100%;
+  color: red;
+  text-align: center;
+  font-weight: bold;
 }
 
 .popup

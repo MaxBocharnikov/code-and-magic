@@ -83,5 +83,5 @@
   };
 
 
-  window.wizards = generateRandomWizards(wizardSettingsList, 4);
+ // window.wizards = generateRandomWizards(wizardSettingsList, 4);
 })();
