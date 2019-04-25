@@ -71,6 +71,15 @@
     setupFireball.style.backgroundColor = hiddenFireballColor.value;
   });
 
+  //  Функция возвращает параметры волшнебника пользователя (цвет плаща и цвет глаз)
+  window.getUserWizardSettings = function () {
+    var wizardSettings = {};
+    wizardSettings.colorCoat = hiddenCoatColor.value;
+    wizardSettings.colorEyes = hiddenEyesColor.value;
+
+    return wizardSettings;
+  };
+
   // На нажатие кнопки [Сохранить]
   submit.addEventListener('click', function (e) {
     e.preventDefault();

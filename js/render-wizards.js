@@ -16,17 +16,27 @@
       return wizardElement;
     };
 
-    //  Функция из полученного массива магов выбирает num кол-во магов
-    var chooseWizards = function (wizards, num) {
-      var chosenWizards = [];
-      var index;
-      for (var i = 0; i < num; i++) {
-        index = window.getRandomNumber(0, wizards.length);
-        chosenWizards.push(wizards[index]);
-        wizards.slice(index, 1);
-      }
-      return chosenWizards;
+    //  Функция сортирует массив волшебников по схожести
+    var chooseWizards = function (userWizard, allWizards) {
+      var COAT_SIMILAR_POINTS = 2;
+      var EYES_SIMILAR_POINTS = 1;
+      allWizards.forEach(function (wizard) {
+        wizard.similarPoints = 0;
+        if (userWizard.colorCoat === wizard.colorCoat) {
+          wizard.similarPoints += COAT_SIMILAR_POINTS;
+        }
+
+        if (userWizard.colorEyes === wizard.colorEyes) {
+          wizard.similarPoints += EYES_SIMILAR_POINTS;
+        }
+      });
+      var sortedArray = allWizards.sort(function (left, right) {
+        return right.similarPoints - left.similarPoints;
+      });
+      return sortedArray;
+
     };
+
     // Функция очищает содержимое блока setup-similar-list
     window.cleanSetup = function () {
       window.removeChildren(setupWizardsList);
@@ -41,8 +51,8 @@
     //  Функция будет вызвана в случае успешной загрузки магов
     var onLoadSimilarWizards = function (wizards) {
       var fragment = document.createDocumentFragment();
-      var chosenWizards = chooseWizards(wizards, 4);
-      for (var i = 0; i < chosenWizards.length; i++) {
+      var chosenWizards = chooseWizards(window.getUserWizardSettings(), wizards);
+      for (var i = 0; i < 4; i++) {
         var renderedWizard = renderWizards(chosenWizards[i], wizardTemplate);
         fragment.appendChild(renderedWizard);
       }

@@ -18,7 +18,6 @@ var originalSetupCoorinat = {};
 
 //  Функция отображет окно выбора мага, удаляя у элемента класс hidden
 window.showSetup = function () {
-  showSimilar();
   originalSetupCoorinat.x = window.setup.style.left;
   originalSetupCoorinat.y = window.setup.style.top;
   window.setup.classList.remove('hidden');
@@ -64,5 +63,5 @@ var showSimilar = function () {
   window.getSimilarWizards();
   setupSimilar.classList.remove('hidden');
 };
-
+showSimilar();
 
