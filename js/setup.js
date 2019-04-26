@@ -1,6 +1,5 @@
 'use strict';
 
-window.setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = window.setup.querySelector('.setup-close');
 var setupUsername = window.setup.querySelector('.setup-user-name');
@@ -18,7 +17,6 @@ var originalSetupCoorinat = {};
 
 //  Функция отображет окно выбора мага, удаляя у элемента класс hidden
 window.showSetup = function () {
-  showSimilar();
   originalSetupCoorinat.x = window.setup.style.left;
   originalSetupCoorinat.y = window.setup.style.top;
   window.setup.classList.remove('hidden');
@@ -31,7 +29,6 @@ window.hideSetup = function () {
   document.removeEventListener('keydown', onPopupEscPress);
   window.setup.style.left = originalSetupCoorinat.x;
   window.setup.style.top = originalSetupCoorinat.y;
-  window.cleanSetup();
 };
 // Открытие - закрытие окна настройки персонажа
 setupOpen.addEventListener('click', window.showSetup);
@@ -58,11 +55,5 @@ setupUsername.addEventListener('blur', function () {
   document.addEventListener('keydown', onPopupEscPress);
 });
 
-//  Функция отображет блок настройки мага, удаляя у элемента класс hidden
-var showSimilar = function () {
-  var setupSimilar = document.querySelector('.setup-similar');
-  window.getSimilarWizards();
-  setupSimilar.classList.remove('hidden');
-};
-
+window.showSimilar();
 
