@@ -1,5 +1,6 @@
 'use strict';
 (function () {
+  window.setup = document.querySelector('.setup');
   var ESC_KEYCODE = 27;
 
   // Проверяет на ESC
@@ -19,5 +20,14 @@
     return Math.floor(Math.random() * (max - min) + min);
   };
 
+  // Функция устраняет "Дребезги"
+  window.debounce = function (func, wait) {
+    if (lastTimeOut) {
+      window.clearTimeout(lastTimeOut);
+    }
+    var lastTimeOut = window.setTimeout(function () {
+      func();
+    }, wait);
+  };
 
 })();

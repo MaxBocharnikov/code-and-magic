@@ -57,12 +57,14 @@
   setupWizardCoat.addEventListener('click', function () {
     setupWizardCoat.style.fill = changeColor(setupWizardCoat.style.fill, coatColors);
     hiddenCoatColor.value = setupWizardCoat.style.fill;
+    window.debounce(window.renderWizards, 500);
   });
 
   //  Изменения цвета глаз персонажа по нажатию
   setupWizardEyes.addEventListener('click', function () {
     setupWizardEyes.style.fill = changeColor(setupWizardEyes.style.fill, eyesColors);
     hiddenEyesColor.value = setupWizardEyes.style.fill;
+    window.debounce(window.renderWizards, 500);
   });
 
   //  Изменения цвета фаерболла по нажатию
